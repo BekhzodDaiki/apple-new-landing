@@ -61,13 +61,13 @@ export const PromoCard = ({
           )}
         </div>
       </div>
-      <div className="mt-4">
+      <Link to={learnMoreLink} className="mt-4 block cursor-pointer group overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
-      </div>
+      </Link>
     </div>
   );
 };

@@ -1,16 +1,17 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  "Store",
-  "Mac",
-  "iPad",
-  "iPhone",
-  "Watch",
-  "AirPods",
-  "Dyson",
-  "Alisa",
-  "Hoop",
+  { name: "Store", path: "/" },
+  { name: "Mac", path: "/mac" },
+  { name: "iPad", path: "/ipad" },
+  { name: "iPhone", path: "/iphone" },
+  { name: "Watch", path: "/watch" },
+  { name: "AirPods", path: "/airpods" },
+  { name: "Dyson", path: "/dyson" },
+  { name: "Alisa", path: "/alisa" },
+  { name: "Hoop", path: "/hoop" },
 ];
 
 interface MobileMenuProps {
@@ -64,14 +65,15 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         {/* Navigation Links */}
         <nav className="px-4 py-4 max-h-[calc(100vh-44px)] overflow-y-auto">
           {navItems.map((item, index) => (
-            <a
-              key={item}
-              href="#"
+            <Link
+              key={item.name}
+              to={item.path}
+              onClick={onClose}
               className="block py-3 text-lg font-medium text-foreground border-b border-border/30 last:border-0 hover:text-text-secondary transition-colors opacity-0 animate-fade-in-up"
               style={{ animationDelay: `${index * 50}ms`, animationFillMode: "forwards" }}
             >
-              {item}
-            </a>
+              {item.name}
+            </Link>
           ))}
         </nav>
       </div>

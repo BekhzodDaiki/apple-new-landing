@@ -8,7 +8,7 @@ export const ProductFeatures = ({ features }: ProductFeaturesProps) => {
   return (
     <div className="bg-background rounded-2xl border border-border p-6 md:p-8">
       <h3 className="text-xl font-semibold text-foreground mb-6">
-        Key Features
+        Ключевые особенности
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {features.map((feature, index) => (

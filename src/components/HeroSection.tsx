@@ -18,8 +18,8 @@ export const HeroSection = ({
   subtitle,
   primaryLink = "#",
   secondaryLink = "#",
-  primaryText = "Learn more",
-  secondaryText = "Buy",
+  primaryText = "Подробнее",
+  secondaryText = "Купить",
   image,
   bgColor = "white",
   textColor = "dark",
@@ -64,13 +64,13 @@ export const HeroSection = ({
             {secondaryText} {">"}
           </Link>
         </div>
-        <div className="mt-8 opacity-0 animate-scale-in animation-delay-300">
+        <Link to={learnLink} className="mt-8 block opacity-0 animate-scale-in animation-delay-300 cursor-pointer group overflow-hidden">
           <img
             src={image}
             alt={title}
-            className="mx-auto max-w-full h-auto"
+            className="mx-auto max-w-full h-auto transition-transform duration-500 ease-out group-hover:scale-105"
           />
-        </div>
+        </Link>
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export const ProductBuyCard = ({
   selectedColor,
 }: ProductBuyCardProps) => {
   const formatPrice = (value: number) => {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("ru-RU", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 0,
@@ -42,7 +42,7 @@ export const ProductBuyCard = ({
         </div>
         {originalPrice && (
           <span className="text-sm text-green-600 font-medium">
-            Save {formatPrice(originalPrice - price)}
+            Экономия {formatPrice(originalPrice - price)}
           </span>
         )}
       </div>
@@ -63,12 +63,12 @@ export const ProductBuyCard = ({
         <Button asChild className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium">
           <Link to={`/buy/${productId}`}>
             <ShoppingBag className="w-5 h-5 mr-2" />
-            Buy
+            Купить
           </Link>
         </Button>
         <Button variant="outline" className="w-full h-12 text-base font-medium">
           <Heart className="w-5 h-5 mr-2" />
-          Add to Wishlist
+          В избранное
         </Button>
       </div>
 
@@ -77,28 +77,28 @@ export const ProductBuyCard = ({
         <div className="flex items-center gap-3 text-sm">
           <Truck className="w-5 h-5 text-text-secondary" />
           <div>
-            <span className="text-foreground">Free Delivery</span>
-            <span className="text-text-secondary block">Get it by Dec 24</span>
+            <span className="text-foreground">Бесплатная доставка</span>
+            <span className="text-text-secondary block">Получите до 24 декабря</span>
           </div>
         </div>
         <div className="flex items-center gap-3 text-sm">
           <RotateCcw className="w-5 h-5 text-text-secondary" />
-          <span className="text-foreground">Free 14-day returns</span>
+          <span className="text-foreground">Бесплатный возврат 14 дней</span>
         </div>
         <div className="flex items-center gap-3 text-sm">
           <Shield className="w-5 h-5 text-text-secondary" />
-          <span className="text-foreground">2-year warranty included</span>
+          <span className="text-foreground">Гарантия 2 года</span>
         </div>
       </div>
 
       {/* Financing */}
       <div className="bg-section-gray rounded-xl p-4">
         <p className="text-sm text-foreground">
-          Pay <span className="font-semibold">{formatPrice(Math.round(price / 12))}/mo.</span>
-          {" "}for 12 months at 0% APR
+          Платите <span className="font-semibold">{formatPrice(Math.round(price / 12))}/мес.</span>
+          {" "}в течение 12 месяцев под 0% годовых
         </p>
         <a href="#" className="text-sm text-link-blue hover:underline">
-          Learn about financing options
+          Узнать о рассрочке
         </a>
       </div>
     </div>
