@@ -36,7 +36,7 @@ const ProductPage = () => {
             className="inline-flex items-center text-sm text-link-blue hover:underline"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
-            Back to Store
+            Вернуться в магазин
           </Link>
         </div>
       </div>
@@ -99,14 +99,14 @@ const ProductPage = () => {
       <section className="py-16 bg-section-gray text-center">
         <div className="max-w-[980px] mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-            Explore more products
+            Изучите больше продуктов
           </h2>
           <p className="mt-3 text-lg text-text-secondary">
-            Discover the perfect accessories and companion devices.
+            Откройте для себя идеальные аксессуары и сопутствующие устройства.
           </p>
           <div className="mt-6">
             <Link to="/" className="text-link-blue hover:underline text-lg">
-              View all products {">"}
+              Смотреть все продукты {">"}
             </Link>
           </div>
         </div>

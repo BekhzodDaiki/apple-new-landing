@@ -8,7 +8,7 @@ export const ProductSpecs = ({ specs }: ProductSpecsProps) => {
   return (
     <div className="bg-section-gray rounded-2xl p-6 md:p-8">
       <h3 className="text-xl font-semibold text-foreground mb-6">
-        Technical Specifications
+        Технические характеристики
       </h3>
       <div className="space-y-4">
         {specs.map((spec, index) => (

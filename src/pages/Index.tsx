@@ -23,17 +23,17 @@ const Index = () => {
       
       {/* Promo Banner */}
       <PromoBanner
-        text="Order by 12/22 for free delivery of in‑stock items by 12/24. See checkout for specific delivery dates and options."
-        linkText="Shop"
+        text="Закажите до 22/12 для бесплатной доставки товаров в наличии до 24/12. Смотрите точные сроки доставки при оформлении."
+        linkText="Магазин"
         linkHref="#"
       />
       
       {/* Main Hero - iPhone */}
       <HeroSection
         title="iPhone"
-        subtitle="Say hello to the latest generation of iPhone."
-        primaryText="Learn more"
-        secondaryText="Shop iPhone"
+        subtitle="Познакомьтесь с новейшим поколением iPhone."
+        primaryText="Подробнее"
+        secondaryText="Купить iPhone"
         image={heroIphone}
         bgColor="white"
         textColor="dark"
@@ -46,40 +46,40 @@ const Index = () => {
           {/* iPad */}
           <PromoCard
             title="iPad Air"
-            subtitle="Now supercharged by the M3 chip."
+            subtitle="Теперь с мощным чипом M3."
             image={ipadImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="ipad"
           />
           
           {/* Watch */}
           <PromoCard
             title="Apple Watch"
-            subtitle="The ultimate way to watch your health."
+            subtitle="Лучший способ следить за здоровьем."
             image={watchImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="watch"
           />
           
           {/* AirPods */}
           <PromoCard
             title="AirPods Pro"
-            subtitle="The world's best in-ear Active Noise Cancellation."
+            subtitle="Лучшее активное шумоподавление в мире."
             image={airpodsImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="airpods"
           />
           
           {/* MacBook */}
           <PromoCard
             title="MacBook Pro"
-            subtitle="Mind-blowing. Head-turning."
+            subtitle="Невероятный. Впечатляющий."
             image={macbookImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="macbook"
           />
         </div>
@@ -88,9 +88,9 @@ const Index = () => {
       {/* Dyson Hero Section */}
       <HeroSection
         title="Dyson"
-        subtitle="Powerful suction. Intelligent cleaning. Engineered for your home."
-        primaryText="Explore Dyson"
-        secondaryText="Shop"
+        subtitle="Мощное всасывание. Интеллектуальная уборка. Создан для вашего дома."
+        primaryText="Изучить Dyson"
+        secondaryText="Магазин"
         image={dysonImage}
         bgColor="gray"
         textColor="dark"
@@ -103,20 +103,20 @@ const Index = () => {
           {/* Alisa */}
           <PromoCard
             title="Alisa"
-            subtitle="Your smart home assistant. Voice control for everything."
+            subtitle="Ваш умный помощник. Голосовое управление всем."
             image={alisaImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="alisa"
           />
           
           {/* Hoop */}
           <PromoCard
             title="Hoop"
-            subtitle="Track your health. 24/7 monitoring on your finger."
+            subtitle="Следите за здоровьем. Мониторинг 24/7 на вашем пальце."
             image={hoopImage}
-            primaryText="Learn more"
-            secondaryText="Buy"
+            primaryText="Подробнее"
+            secondaryText="Купить"
             productId="hoop"
           />
         </div>
@@ -129,11 +129,11 @@ const Index = () => {
             Apple Trade In
           </h2>
           <p className="mt-3 text-lg md:text-xl text-text-secondary">
-            Get up to $180–$670 in credit when you trade in iPhone 13 or higher.
+            Получите до $180–$670 в кредит при сдаче iPhone 13 или новее.
           </p>
           <div className="mt-4">
             <a href="#" className="text-link-blue hover:underline text-lg">
-              Get your estimate {">"}
+              Получить оценку {">"}
             </a>
           </div>
         </div>

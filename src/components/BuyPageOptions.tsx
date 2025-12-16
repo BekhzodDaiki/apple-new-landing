@@ -35,7 +35,7 @@ export const BuyPageOptions = ({
   const [selectedCare, setSelectedCare] = useState<string>("none");
 
   const formatPrice = (value: number) => {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("ru-RU", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 0,
@@ -45,14 +45,14 @@ export const BuyPageOptions = ({
   const engravingOptions: BuyOption[] = [
     {
       id: "engraving",
-      title: "Add Engraving",
+      title: "Добавить гравировку",
       description:
-        "Engrave a mix of emoji, names, initials, and numbers to make it unmistakably yours. Only at Apple.",
-      price: "Free",
+        "Выгравируйте эмодзи, имена, инициалы и числа, чтобы сделать устройство уникальным. Только в Apple.",
+      price: "Бесплатно",
     },
     {
       id: "none",
-      title: "No Engraving",
+      title: "Без гравировки",
     },
   ];
 
@@ -60,24 +60,24 @@ export const BuyPageOptions = ({
     {
       id: "applecare",
       title: "AppleCare+",
-      description: "Cover this product only",
-      price: "$1.99/mo. or $19.99/yr. until cancelled",
+      description: "Защита только для этого продукта",
+      price: "$1,99/мес. или $19,99/год до отмены",
       features: [
-        "Unlimited repairs for accidents like drops and spills",
-        "24/7 priority support from Apple experts",
-        "Express Replacement Service",
+        "Неограниченный ремонт при случайных повреждениях",
+        "Приоритетная поддержка 24/7 от экспертов Apple",
+        "Экспресс-замена",
       ],
     },
     {
       id: "applecare-one",
       title: "AppleCare One",
-      description: "Cover multiple products, including this one",
-      price: "$19.99/mo. until cancelled",
-      badge: "New",
+      description: "Защита нескольких продуктов, включая этот",
+      price: "$19,99/мес. до отмены",
+      badge: "Новинка",
     },
     {
       id: "none",
-      title: "No AppleCare Coverage",
+      title: "Без AppleCare",
     },
   ];
 
@@ -85,9 +85,9 @@ export const BuyPageOptions = ({
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <span className="text-sm font-medium text-destructive">New</span>
+        <span className="text-sm font-medium text-destructive">Новинка</span>
         <h1 className="text-4xl md:text-5xl font-semibold text-foreground tracking-tight mt-1">
-          Buy {name}
+          Купить {name}
         </h1>
         <p className="mt-3 text-lg text-text-secondary">{tagline}</p>
       </div>
@@ -95,7 +95,7 @@ export const BuyPageOptions = ({
       {/* Personalization Section */}
       <div className="space-y-4">
         <h2 className="text-xl font-semibold text-foreground">
-          Free and fast personalization.
+          Бесплатная быстрая персонализация.
         </h2>
 
         <div className="space-y-3">
@@ -139,9 +139,9 @@ export const BuyPageOptions = ({
       {/* AppleCare Section */}
       <div className="space-y-4">
         <h2 className="text-xl font-semibold text-foreground">
-          AppleCare coverage.{" "}
+          Защита AppleCare.{" "}
           <span className="font-normal text-text-secondary">
-            Choose your plan.
+            Выберите план.
           </span>
         </h2>
 
@@ -205,7 +205,7 @@ export const BuyPageOptions = ({
       {colors.length > 1 && (
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-foreground">
-            Color.{" "}
+            Цвет.{" "}
             <span className="font-normal text-text-secondary">
               {selectedColor.name}
             </span>
@@ -244,14 +244,14 @@ export const BuyPageOptions = ({
 
         <Button className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium rounded-xl">
           <ShoppingBag className="w-5 h-5 mr-2" />
-          Add to Bag
+          Добавить в корзину
         </Button>
 
         <p className="text-center text-sm text-text-secondary">
-          Or pay {formatPrice(Math.round(price / 12))}/mo. for 12 months at 0%
-          APR.{" "}
+          Или платите {formatPrice(Math.round(price / 12))}/мес. в течение 12 месяцев под 0%
+          годовых.{" "}
           <a href="#" className="text-link-blue hover:underline">
-            Learn more
+            Подробнее
           </a>
         </p>
       </div>
