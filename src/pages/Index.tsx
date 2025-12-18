@@ -11,7 +11,7 @@ import airpodsImage from "@/assets/airpods.png";
 import macbookImage from "@/assets/macbook.png";
 import dysonImage from "@/assets/dyson.png";
 import alisaImage from "@/assets/alisa.png";
-import hoopImage from "@/assets/hoop.png";
+import whoopImage from "@/assets/whoop-4.png";
 
 const Index = () => {
   return (
@@ -20,13 +20,6 @@ const Index = () => {
       
       {/* Spacer for fixed nav */}
       <div className="h-11" />
-      
-      {/* Promo Banner */}
-      <PromoBanner
-        text="Закажите до 22/12 для бесплатной доставки товаров в наличии до 24/12. Смотрите точные сроки доставки при оформлении."
-        linkText="Магазин"
-        linkHref="#"
-      />
       
       {/* Main Hero - iPhone */}
       <HeroSection
@@ -110,14 +103,14 @@ const Index = () => {
             productId="alisa"
           />
           
-          {/* Hoop */}
+          {/* Whoop */}
           <PromoCard
-            title="Hoop"
-            subtitle="Следите за здоровьем. Мониторинг 24/7 на вашем пальце."
-            image={hoopImage}
+            title="Whoop"
+            subtitle="Раскройте свой потенциал. Профессиональный мониторинг восстановления."
+            image={whoopImage}
             primaryText="Подробнее"
             secondaryText="Купить"
-            productId="hoop"
+            productId="whoop"
           />
         </div>
       </section>

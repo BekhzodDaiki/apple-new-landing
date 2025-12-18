@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Check } from "lucide-react";
 import { ProductColor } from "@/data/products";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "sonner";
 
 interface BuyOption {
   id: string;
@@ -13,6 +15,7 @@ interface BuyOption {
 }
 
 interface BuyPageOptionsProps {
+  productId: string;
   name: string;
   tagline: string;
   price: number;
@@ -20,9 +23,11 @@ interface BuyPageOptionsProps {
   colors: ProductColor[];
   selectedColor: ProductColor;
   onColorChange: (color: ProductColor) => void;
+  image: string;
 }
 
 export const BuyPageOptions = ({
+  productId,
   name,
   tagline,
   price,
@@ -30,7 +35,9 @@ export const BuyPageOptions = ({
   colors,
   selectedColor,
   onColorChange,
+  image,
 }: BuyPageOptionsProps) => {
+  const { addItem } = useCart();
   const [selectedEngraving, setSelectedEngraving] = useState<string>("none");
   const [selectedCare, setSelectedCare] = useState<string>("none");
 
@@ -242,7 +249,19 @@ export const BuyPageOptions = ({
           )}
         </div>
 
-        <Button className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium rounded-xl">
+        <Button 
+          onClick={() => {
+            addItem({
+              productId,
+              name,
+              price,
+              color: selectedColor,
+              image: selectedColor.image || image,
+            });
+            toast.success(`${name} добавлен в корзину`);
+          }}
+          className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium rounded-xl"
+        >
           <ShoppingBag className="w-5 h-5 mr-2" />
           Добавить в корзину
         </Button>

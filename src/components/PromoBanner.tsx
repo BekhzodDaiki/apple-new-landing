@@ -6,7 +6,7 @@ interface PromoBannerProps {
 
 export const PromoBanner = ({
   text,
-  linkText = "Shop",
+  linkText = "Магазин",
   linkHref = "#",
 }: PromoBannerProps) => {
   return (

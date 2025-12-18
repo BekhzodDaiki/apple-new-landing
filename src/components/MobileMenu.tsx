@@ -11,7 +11,7 @@ const navItems = [
   { name: "AirPods", path: "/airpods" },
   { name: "Dyson", path: "/dyson" },
   { name: "Alisa", path: "/alisa" },
-  { name: "Hoop", path: "/hoop" },
+  { name: "Whoop", path: "/whoop" },
 ];
 
 interface MobileMenuProps {

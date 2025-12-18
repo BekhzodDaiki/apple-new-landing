@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { useState, memo } from "react";
+
+interface ColorOption {
+  hex: string;
+  image: string;
+}
 
 interface ProductLineupItem {
   id: string;
@@ -8,6 +14,7 @@ interface ProductLineupItem {
   image: string;
   isNew?: boolean;
   colors?: string[];
+  colorImages?: ColorOption[];
 }
 
 interface CategoryProductsProps {
@@ -15,6 +22,104 @@ interface CategoryProductsProps {
   products: ProductLineupItem[];
   categoryId: string;
 }
+
+const ProductCard = memo(({ product, categoryId, index }: { product: ProductLineupItem; categoryId: string; index: number }) => {
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  
+  const currentImage = product.colorImages?.[selectedColorIndex]?.image || product.image;
+  const colors = product.colorImages?.map(c => c.hex) || product.colors || [];
+
+  return (
+    <div
+      className="group relative bg-card rounded-3xl overflow-hidden opacity-0 animate-fade-in-up flex flex-col h-full"
+      style={{
+        animationDelay: `${index * 100}ms`,
+        animationFillMode: "forwards",
+      }}
+    >
+      {/* Product Card Content */}
+      <div className="p-6 pb-0 text-center h-[80px] flex flex-col justify-center">
+        {/* New Badge */}
+        {product.isNew && (
+          <span className="inline-block bg-accent text-accent-foreground text-xs font-medium px-3 py-1 rounded-full mb-2">
+            Новинка
+          </span>
+        )}
+
+        {/* Product Name - Clickable */}
+        <Link to={`/product/${product.id}`} className="text-xl font-semibold text-foreground hover:text-link-blue transition-colors">
+          {product.name}
+        </Link>
+      </div>
+
+      {/* Product Image - Clickable */}
+      <Link to={`/product/${product.id}`} className="relative h-56 flex items-center justify-center px-6 cursor-pointer">
+        <img
+          src={currentImage}
+          alt={product.name}
+          loading="lazy"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+          onError={(e) => {
+            e.currentTarget.src = product.image;
+          }}
+        />
+      </Link>
+
+      {/* Color Options */}
+      <div className="flex justify-center gap-2 py-3 h-[44px]">
+        {colors.length > 0 ? (
+          colors.map((color, i) => (
+            <button
+              key={i}
+              onClick={() => setSelectedColorIndex(i)}
+              className={`w-4 h-4 rounded-full transition-all ring-1 ring-border/20 ${
+                selectedColorIndex === i
+                  ? "ring-2 ring-link-blue ring-offset-2 scale-110"
+                  : "hover:scale-110"
+              }`}
+              style={{ backgroundColor: color }}
+              aria-label={`Цвет ${i + 1}`}
+            />
+          ))
+        ) : (
+          <div className="h-4" />
+        )}
+      </div>
+
+      {/* Product Info */}
+      <div className="p-6 pt-2 text-center border-t border-border/50 flex-1 flex flex-col justify-between">
+        <p className="text-text-secondary text-sm mb-3 leading-relaxed line-clamp-2">
+          {product.tagline}
+        </p>
+
+        <div>
+          {/* Price */}
+          <p className="text-sm text-foreground font-medium mb-4">
+            {product.price}
+          </p>
+
+          {/* CTA Links */}
+          <div className="flex justify-center gap-6">
+            <Link
+              to={`/product/${product.id}`}
+              className="text-link-blue hover:underline text-sm font-medium"
+            >
+              Подробнее {">"}
+            </Link>
+            <Link
+              to={`/buy/${product.id}`}
+              className="text-link-blue hover:underline text-sm font-medium"
+            >
+              Купить {">"}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+ProductCard.displayName = "ProductCard";
 
 export const CategoryProducts = ({ title, products, categoryId }: CategoryProductsProps) => {
   return (
@@ -27,82 +132,14 @@ export const CategoryProducts = ({ title, products, categoryId }: CategoryProduc
           Найдите лучший вариант для вас.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
           {products.map((product, index) => (
-            <div
-              key={product.id}
-              className="group relative bg-card rounded-3xl overflow-hidden opacity-0 animate-fade-in-up"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animationFillMode: "forwards",
-              }}
-            >
-              {/* Product Card Content */}
-              <div className="p-6 pb-0 text-center">
-                {/* New Badge */}
-                {product.isNew && (
-                  <span className="inline-block bg-accent text-accent-foreground text-xs font-medium px-3 py-1 rounded-full mb-3">
-                    Новинка
-                  </span>
-                )}
-
-                {/* Product Name */}
-                <h3 className="text-2xl font-semibold text-foreground">
-                  {product.name}
-                </h3>
-              </div>
-
-              {/* Product Image */}
-              <div className="relative h-64 md:h-72 flex items-center justify-center px-6">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              {/* Color Options */}
-              {product.colors && product.colors.length > 0 && (
-                <div className="flex justify-center gap-2 py-4">
-                  {product.colors.map((color, i) => (
-                    <button
-                      key={i}
-                      className="w-4 h-4 rounded-full border-2 border-transparent hover:border-border transition-colors ring-1 ring-border/20"
-                      style={{ backgroundColor: color }}
-                      title={`Цвет ${i + 1}`}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Product Info */}
-              <div className="p-6 pt-2 text-center border-t border-border/50">
-                <p className="text-text-secondary text-sm mb-3 leading-relaxed min-h-[40px]">
-                  {product.tagline}
-                </p>
-
-                {/* Price */}
-                <p className="text-sm text-foreground font-medium mb-5">
-                  {product.price}
-                </p>
-
-                {/* CTA Links */}
-                <div className="flex justify-center gap-6">
-                  <Link
-                    to={`/product/${categoryId}`}
-                    className="text-link-blue hover:underline text-sm font-medium"
-                  >
-                    Подробнее {">"}
-                  </Link>
-                  <Link
-                    to={`/buy/${categoryId}`}
-                    className="text-link-blue hover:underline text-sm font-medium"
-                  >
-                    Купить {">"}
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              categoryId={categoryId} 
+              index={index} 
+            />
           ))}
         </div>
       </div>
