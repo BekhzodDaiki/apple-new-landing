@@ -1,7 +1,6 @@
 import { useLocation, Navigate, Link } from "react-router-dom";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
-import { PromoBanner } from "@/components/PromoBanner";
 import { CategoryHero } from "@/components/CategoryHero";
 import { CategoryConsider } from "@/components/CategoryConsider";
 import { CategoryProducts } from "@/components/CategoryProducts";
@@ -17,7 +16,7 @@ const pathToProductId: Record<string, string> = {
   "/mac": "macbook",
   "/dyson": "dyson",
   "/alisa": "alisa",
-  "/hoop": "hoop",
+  "/whoop": "whoop",
 };
 
 // Map URL paths to category data keys
@@ -26,10 +25,10 @@ const pathToCategoryKey: Record<string, string> = {
   "/ipad": "ipad",
   "/watch": "watch",
   "/airpods": "airpods",
-  "/mac": "macbook",
+  "/mac": "mac",
   "/dyson": "dyson",
   "/alisa": "alisa",
-  "/hoop": "hoop",
+  "/whoop": "whoop",
 };
 
 const CategoryPage = () => {
@@ -51,18 +50,11 @@ const CategoryPage = () => {
       {/* Spacer for fixed nav */}
       <div className="h-11" />
       
-      {/* Promo Banner */}
-      <PromoBanner
-        text={category.promoBanner}
-        linkText="Shop"
-        linkHref={`/buy/${productId}`}
-      />
-      
       {/* Hero Section */}
       <CategoryHero
         title={category.heroTitle}
         subtitle={category.heroSubtitle}
-        image={product.image}
+        image={category.heroImage || product.image}
         productId={productId}
       />
       
@@ -90,13 +82,13 @@ const CategoryPage = () => {
               to={`/product/${productId}`}
               className="text-link-blue hover:underline text-lg"
             >
-              Learn more {">"}
+              Подробнее {">"}
             </Link>
             <Link
               to={`/buy/${productId}`}
               className="text-link-blue hover:underline text-lg"
             >
-              Shop now {">"}
+              Купить {">"}
             </Link>
           </div>
         </div>

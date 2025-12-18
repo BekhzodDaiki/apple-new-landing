@@ -36,41 +36,34 @@ const BuyPage = () => {
               to={`/product/${product.id}`}
               className="text-text-secondary hover:text-foreground transition-colors"
             >
-              Overview
+              Обзор
             </Link>
-            <span className="text-link-blue font-medium">Buy</span>
+            <span className="text-link-blue font-medium">Купить</span>
             <Link
               to={`/product/${product.id}`}
               className="text-text-secondary hover:text-foreground transition-colors"
             >
-              Tech Specs
+              Характеристики
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Promo Banner */}
-      <div className="bg-section-gray border-b border-border">
-        <div className="max-w-[1200px] mx-auto px-4 py-3 text-center">
-          <p className="text-sm text-text-secondary">
-            Pay for your new Apple products over time, interest-free with Apple
-            Card.{" "}
-            <a href="#" className="text-link-blue hover:underline">
-              Learn more →
-            </a>
-          </p>
-        </div>
-      </div>
 
       {/* Main Content */}
       <section className="py-12 md:py-16">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left - Product Image & Benefits */}
-            <BuyPageHero image={product.image} name={product.name} />
+            <BuyPageHero 
+              image={product.image} 
+              name={product.name}
+              selectedColor={selectedColor}
+            />
 
             {/* Right - Buy Options */}
             <BuyPageOptions
+              productId={product.id}
               name={product.name}
               tagline={product.tagline}
               price={product.price}
@@ -78,6 +71,7 @@ const BuyPage = () => {
               colors={product.colors}
               selectedColor={selectedColor}
               onColorChange={setSelectedColor}
+              image={product.image}
             />
           </div>
         </div>

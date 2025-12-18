@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Heart, Truck, Shield, RotateCcw } from "lucide-react";
 import { ProductColor } from "@/data/products";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "sonner";
 
 interface ProductBuyCardProps {
   productId: string;
@@ -9,6 +11,7 @@ interface ProductBuyCardProps {
   price: number;
   originalPrice?: number;
   selectedColor: ProductColor;
+  image: string;
 }
 
 export const ProductBuyCard = ({
@@ -17,13 +20,27 @@ export const ProductBuyCard = ({
   price,
   originalPrice,
   selectedColor,
+  image,
 }: ProductBuyCardProps) => {
+  const { addItem } = useCart();
+
   const formatPrice = (value: number) => {
     return new Intl.NumberFormat("ru-RU", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 0,
     }).format(value);
+  };
+
+  const handleAddToCart = () => {
+    addItem({
+      productId,
+      name,
+      price,
+      color: selectedColor,
+      image: selectedColor.image || image,
+    });
+    toast.success(`${name} добавлен в корзину`);
   };
 
   return (
@@ -60,11 +77,12 @@ export const ProductBuyCard = ({
 
       {/* Buy Buttons */}
       <div className="space-y-3">
-        <Button asChild className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium">
-          <Link to={`/buy/${productId}`}>
-            <ShoppingBag className="w-5 h-5 mr-2" />
-            Купить
-          </Link>
+        <Button 
+          onClick={handleAddToCart}
+          className="w-full bg-link-blue hover:bg-link-blue/90 text-white h-12 text-base font-medium"
+        >
+          <ShoppingBag className="w-5 h-5 mr-2" />
+          В корзину
         </Button>
         <Button variant="outline" className="w-full h-12 text-base font-medium">
           <Heart className="w-5 h-5 mr-2" />

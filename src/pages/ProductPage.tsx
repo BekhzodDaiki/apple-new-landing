@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Zap, Shield, Award, Truck } from "lucide-react";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
 import { ProductGallery } from "@/components/ProductGallery";
@@ -21,6 +21,12 @@ const ProductPage = () => {
     return <Navigate to="/" replace />;
   }
 
+  // Check if product is from partner brands (Alisa, Whoop) - Dyson now uses standard Apple style
+  const isAlisa = productId?.startsWith("alisa");
+  const isWhoop = productId?.startsWith("whoop");
+  const isPartnerProduct = isAlisa || isWhoop;
+
+  // Original Apple-style product page
   return (
     <div className="min-h-screen bg-background">
       <AppleNav />
@@ -81,6 +87,7 @@ const ProductPage = () => {
                 price={product.price}
                 originalPrice={product.originalPrice}
                 selectedColor={selectedColor}
+                image={product.image}
               />
             </div>
           </div>

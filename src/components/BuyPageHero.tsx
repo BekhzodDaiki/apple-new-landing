@@ -1,23 +1,27 @@
-import { Package, Music, RotateCcw, MessageCircle } from "lucide-react";
+import { Package, Shield, RotateCcw, MessageCircle } from "lucide-react";
+import { ProductColor } from "@/data/products";
 
 interface BuyPageHeroProps {
   image: string;
   name: string;
+  selectedColor?: ProductColor;
 }
 
-export const BuyPageHero = ({ image, name }: BuyPageHeroProps) => {
+export const BuyPageHero = ({ image, name, selectedColor }: BuyPageHeroProps) => {
+  const currentImage = selectedColor?.image || image;
+  
   const benefits = [
     {
       icon: Package,
-      text: "Get free delivery, or pick up available items at an Apple Store",
+      text: "Бесплатная доставка или самовывоз из магазина",
     },
     {
-      icon: Music,
-      text: "Get 3 months of Apple Fitness+ and Apple Music free",
+      icon: Shield,
+      text: "Гарантия 2 года и техническая поддержка",
     },
     {
       icon: RotateCcw,
-      text: "Free extended returns now through 1/8/2026",
+      text: "Бесплатный возврат в течение 14 дней",
     },
   ];
 
@@ -26,9 +30,13 @@ export const BuyPageHero = ({ image, name }: BuyPageHeroProps) => {
       {/* Main Product Image */}
       <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
         <img
-          src={image}
-          alt={name}
-          className="w-full h-full object-contain animate-scale-in"
+          src={currentImage}
+          alt={`${name} - ${selectedColor?.name || ''}`}
+          className="w-full h-full object-contain transition-opacity duration-300"
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = image;
+          }}
         />
       </div>
 
@@ -51,10 +59,10 @@ export const BuyPageHero = ({ image, name }: BuyPageHeroProps) => {
       <div className="mt-8 flex items-center gap-3 text-sm text-text-secondary">
         <MessageCircle className="w-5 h-5" strokeWidth={1.5} />
         <div>
-          <span>Have questions about buying {name}?</span>
+          <span>Есть вопросы о покупке {name}?</span>
           <br />
           <a href="#" className="text-link-blue hover:underline">
-            Chat with a Specialist ↗
+            Связаться со специалистом ↗
           </a>
         </div>
       </div>

@@ -8,7 +8,7 @@ const footerLinks = {
     "AirPods",
     "Dyson",
     "Alisa",
-    "Hoop",
+    "Whoop",
   ],
 };
 

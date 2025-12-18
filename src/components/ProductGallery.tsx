@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ProductColor } from "@/data/products";
 
 interface ProductGalleryProps {
@@ -16,14 +15,24 @@ export const ProductGallery = ({
   selectedColor,
   onColorChange,
 }: ProductGalleryProps) => {
+  // Use color-specific image if available, otherwise fall back to default
+  const currentImage = selectedColor.image || image;
+
   return (
     <div className="flex flex-col items-center">
       {/* Main Image */}
       <div className="relative w-full max-w-md aspect-square flex items-center justify-center bg-section-gray rounded-2xl overflow-hidden mb-6">
         <img
-          src={image}
-          alt={name}
-          className="w-full h-full object-contain p-8 animate-scale-in"
+          src={currentImage}
+          alt={`${name} - ${selectedColor.name}`}
+          className="w-full h-full object-contain p-8"
+          loading="lazy"
+          onError={(e) => {
+            // Fall back to default image if color image fails to load
+            if (e.currentTarget.src !== image) {
+              e.currentTarget.src = image;
+            }
+          }}
         />
       </div>
 
