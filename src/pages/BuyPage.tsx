@@ -4,15 +4,24 @@ import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
 import { BuyPageHero } from "@/components/BuyPageHero";
 import { BuyPageOptions } from "@/components/BuyPageOptions";
-import { products } from "@/data/products";
+import { useData } from "@/hooks/useData";
 
 const BuyPage = () => {
   const { productId } = useParams<{ productId: string }>();
+  const { products, isLoading } = useData();
   const product = productId ? products[productId] : null;
 
   const [selectedColor, setSelectedColor] = useState(
     product?.colors[0] || { name: "", hex: "" }
   );
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   if (!product) {
     return <Navigate to="/" replace />;

@@ -1,21 +1,30 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import { ChevronLeft, Zap, Shield, Award, Truck } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductSpecs } from "@/components/ProductSpecs";
 import { ProductFeatures } from "@/components/ProductFeatures";
 import { ProductBuyCard } from "@/components/ProductBuyCard";
-import { products } from "@/data/products";
+import { useData } from "@/hooks/useData";
 
 const ProductPage = () => {
   const { productId } = useParams<{ productId: string }>();
+  const { products, isLoading } = useData();
   const product = productId ? products[productId] : null;
   
   const [selectedColor, setSelectedColor] = useState(
     product?.colors[0] || { name: "", hex: "" }
   );
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   if (!product) {
     return <Navigate to="/" replace />;

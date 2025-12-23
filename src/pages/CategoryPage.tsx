@@ -1,11 +1,11 @@
 import { useLocation, Navigate, Link } from "react-router-dom";
+import { useMemo } from "react";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
 import { CategoryHero } from "@/components/CategoryHero";
 import { CategoryConsider } from "@/components/CategoryConsider";
 import { CategoryProducts } from "@/components/CategoryProducts";
-import { products } from "@/data/products";
-import { categoryData } from "@/data/categories";
+import { useData } from "@/hooks/useData";
 
 // Map URL paths to product IDs
 const pathToProductId: Record<string, string> = {
@@ -33,11 +33,21 @@ const pathToCategoryKey: Record<string, string> = {
 
 const CategoryPage = () => {
   const location = useLocation();
+  const { products, categories, isLoading } = useData();
+  
   const categoryKey = pathToCategoryKey[location.pathname];
   const productId = pathToProductId[location.pathname];
   
-  const category = categoryKey ? categoryData[categoryKey] : null;
+  const category = categoryKey ? categories[categoryKey] : null;
   const product = productId ? products[productId] : null;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   if (!category || !product) {
     return <Navigate to="/" replace />;
