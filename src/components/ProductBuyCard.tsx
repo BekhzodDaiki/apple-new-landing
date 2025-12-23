@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Heart, Truck, Shield, RotateCcw } from "lucide-react";
+import { ShoppingBag, Heart, Truck, Shield, Phone } from "lucide-react";
 import { ProductColor } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { toast } from "sonner";
@@ -94,28 +94,21 @@ export const ProductBuyCard = ({
       <div className="space-y-3 pt-4 border-t border-border">
         <div className="flex items-center gap-3 text-sm">
           <Truck className="w-5 h-5 text-text-secondary" />
-          <div>
-            <span className="text-foreground">Бесплатная доставка</span>
-            <span className="text-text-secondary block">Получите до 24 декабря</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 text-sm">
-          <RotateCcw className="w-5 h-5 text-text-secondary" />
-          <span className="text-foreground">Бесплатный возврат 14 дней</span>
+          <span className="text-foreground">Имеется доставка</span>
         </div>
         <div className="flex items-center gap-3 text-sm">
           <Shield className="w-5 h-5 text-text-secondary" />
-          <span className="text-foreground">Гарантия 2 года</span>
+          <span className="text-foreground">Гарантия на заводской брак</span>
         </div>
       </div>
 
       {/* Financing */}
       <div className="bg-section-gray rounded-xl p-4">
         <p className="text-sm text-foreground">
-          Платите <span className="font-semibold">{formatPrice(Math.round(price / 12))}/мес.</span>
-          {" "}в течение 12 месяцев под 0% годовых
+          Есть рассрочка от 3 до 12 месяцев
         </p>
-        <a href="#" className="text-sm text-link-blue hover:underline">
+        <a href="tel:+79991234567" className="text-sm text-link-blue hover:underline inline-flex items-center gap-1">
+          <Phone className="w-4 h-4" />
           Узнать о рассрочке
         </a>
       </div>

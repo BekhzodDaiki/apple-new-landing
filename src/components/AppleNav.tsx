@@ -1,9 +1,10 @@
-import { Search, Menu } from "lucide-react";
+import { Search, Menu, User, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MobileMenu } from "./MobileMenu";
 import { CartSheet } from "./CartSheet";
-import logoImage from "@/assets/logo.png";
+import { useAuth } from "@/hooks/useAuth";
+import AppleLogo from "./utils/AppleLogo";
 
 const navItems = [
   { name: "Store", path: "/" },
@@ -19,6 +20,7 @@ const navItems = [
 
 export const AppleNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isAdmin } = useAuth();
 
   return (
     <>
@@ -37,13 +39,9 @@ export const AppleNav = () => {
             {/* Logo - Center on mobile, left on desktop */}
             <Link 
               to="/" 
-              className="hover:opacity-80 transition-opacity md:order-first absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+              className="hover:opacity-80 transition-opacity md:order-first absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-0.5 text-foreground font-semibold text-lg md:text-base tracking-tight"
             >
-              <img 
-                src={logoImage} 
-                alt="MobiStore" 
-                className="h-8 md:h-6 w-auto invert dark:invert-0"
-              />
+              mobi st<AppleLogo />re
             </Link>
 
             {/* Navigation Links */}
@@ -59,11 +57,18 @@ export const AppleNav = () => {
               ))}
             </div>
 
-            {/* Search and Cart */}
+            {/* Search, User and Cart */}
             <div className="flex items-center space-x-5">
               <button className="text-foreground/80 hover:text-foreground transition-colors">
                 <Search className="w-4 h-4" />
               </button>
+              <Link 
+                to={user ? (isAdmin ? "/admin" : "/") : "/auth"} 
+                className="text-foreground/80 hover:text-foreground transition-colors"
+                title={user ? (isAdmin ? "Админ-панель" : "Профиль") : "Войти"}
+              >
+                <User className="w-4 h-4" />
+              </Link>
               <CartSheet />
             </div>
           </div>
