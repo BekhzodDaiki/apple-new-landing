@@ -63,11 +63,11 @@ export const Footer = () => {
               <a href="#" className="text-link-blue hover:underline">
                 другого продавца
               </a>{" "}
-              рядом с вами. Или позвоните 8-800-555-35-35.
+              рядом с вами. Или позвоните <a href="tel:+998938708888">+998938708888</a>
             </p>
           </div>
           <div className="text-xs text-text-secondary">
-            © 2024 Apple Inc. Все права защищены.
+            mobi store 2025. Все права защищены.
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-xs text-text-secondary">
