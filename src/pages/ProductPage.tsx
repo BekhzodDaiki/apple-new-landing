@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ChevronLeft } from "lucide-react";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
@@ -18,6 +18,13 @@ const ProductPage = () => {
   const [selectedColor, setSelectedColor] = useState(
     product?.colors[0] || { name: "", hex: "" }
   );
+
+  // Reset selected color when product changes
+  useEffect(() => {
+    if (product?.colors[0]) {
+      setSelectedColor(product.colors[0]);
+    }
+  }, [productId, product?.colors]);
 
   if (isLoading) {
     return (
