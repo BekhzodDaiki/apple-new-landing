@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MobileMenu } from "./MobileMenu";
 import { CartSheet } from "./CartSheet";
 import { useAuth } from "@/hooks/useAuth";
+import AppleLogo from "./utils/AppleLogo";
 
 const navItems = [
   { name: "Store", path: "/" },
@@ -40,7 +41,7 @@ export const AppleNav = () => {
               to="/" 
               className="hover:opacity-80 transition-opacity md:order-first absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-0.5 text-foreground font-semibold text-lg md:text-base tracking-tight"
             >
-              m<Smartphone className="w-4 h-4 md:w-3.5 md:h-3.5" />bi store
+              mobi st<AppleLogo />re
             </Link>
 
             {/* Navigation Links */}
