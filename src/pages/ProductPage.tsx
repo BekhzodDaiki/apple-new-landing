@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ChevronLeft } from "lucide-react";
 import { AppleNav } from "@/components/AppleNav";
 import { Footer } from "@/components/Footer";
@@ -7,6 +7,7 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { ProductSpecs } from "@/components/ProductSpecs";
 import { ProductFeatures } from "@/components/ProductFeatures";
 import { ProductBuyCard } from "@/components/ProductBuyCard";
+import { SimilarProducts } from "@/components/SimilarProducts";
 import { useData } from "@/hooks/useData";
 
 const ProductPage = () => {
@@ -34,6 +35,14 @@ const ProductPage = () => {
   const isAlisa = productId?.startsWith("alisa");
   const isWhoop = productId?.startsWith("whoop");
   const isPartnerProduct = isAlisa || isWhoop;
+
+  // Get similar products from the same category
+  const similarProducts = useMemo(() => {
+    if (!product) return [];
+    return Object.values(products)
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, 3);
+  }, [products, product]);
 
   // Original Apple-style product page
   return (
@@ -110,6 +119,11 @@ const ProductPage = () => {
           <ProductFeatures features={product.features} />
         </div>
       </section>
+      
+      {/* Similar Products */}
+      {similarProducts.length > 0 && (
+        <SimilarProducts products={similarProducts} currentProductId={product.id} />
+      )}
       
       {/* Related Products CTA */}
       <section className="py-16 bg-section-gray text-center">

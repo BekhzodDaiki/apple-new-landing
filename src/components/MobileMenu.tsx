@@ -1,7 +1,6 @@
 import { X, Smartphone } from "lucide-react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import AppleLogo from "./utils/AppleLogo";
 
 const navItems = [
   { name: "Store", path: "/" },
@@ -48,7 +47,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         {/* Header */}
         <div className="flex items-center justify-between h-11 px-4 border-b border-border/30">
           <span className="flex items-center gap-0.5 text-foreground font-semibold text-lg tracking-tight">
-           mobi st<AppleLogo />re
+            m<Smartphone className="w-4 h-4" />bi store
           </span>
           <button
             onClick={onClose}
